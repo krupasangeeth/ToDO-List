@@ -6,12 +6,16 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
+import { ErrorComponent } from './error/error.component';
+import { ListToDoComponent } from './list-to-do/list-to-do.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
-    LoginComponent
+    LoginComponent,
+    ErrorComponent,
+    ListToDoComponent
   ],
   imports: [
     BrowserModule,

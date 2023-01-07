@@ -1,3 +1,7 @@
-USERNAME : <input type = "text" name = "username" [(ngModel)]="username" > <br> <!-- interpolation value = {{username}} -->
-PASSWORD : <input type = "password" name = "password" [(ngModel)]="password" > <br> <!-- interpolation value = {{password}}>  -->
-<button (click) = handleLogin() >LOGIN</button>
+<small *ngIf = "inValidLogin">{{userErrorMessage}}</small>
+<div>
+    USERNAME : <input type = "text" name = "username" [(ngModel)]="username" > <br> <!-- interpolation value = {{username}} -->
+    PASSWORD : <input type = "password" name = "password" [(ngModel)]="password" > <br> <!-- interpolation value = {{password}}>  -->
+    <button (click) = handleLogin() >LOGIN</button>
+</div>
+<router-outlet></router-outlet>
