@@ -4,6 +4,10 @@
 </div>
 <div class = "container">
     To get the details, please follow the link,
-    <Button (click) = "getDBDetails()" class = "btn btn-success">Click Here for Details</Button>
+    <Button (click) = "getWelcomedatawithParameters()" class = "btn btn-success">Click Here for Details</Button>
+</div>
+<div class = "container" *ngIf="WelcomeMessage">
+    <H2>Customized data from DB</H2>
+    {{WelcomeMessage}}
 
 </div>
