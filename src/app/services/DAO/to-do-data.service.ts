@@ -18,4 +18,8 @@ export class ToDoDataService {
     return this.http.delete(`http://localhost:8080/users/${name}/todos/${id}`)
   }
 
+  retriveTodo(name : String, id: any ){
+    return this.http.get<ToDo>(`http://localhost:8080/users/${name}/todos/${id}`)
+  }
+
 }
