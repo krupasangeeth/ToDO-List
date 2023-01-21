@@ -22,4 +22,12 @@ export class ToDoDataService {
     return this.http.get<ToDo>(`http://localhost:8080/users/${name}/todos/${id}`)
   }
 
+  updateTodo(name : String, id: any , todo : ToDo){
+    return this.http.put(`http://localhost:8080/users/${name}/todos/${id}`,todo);
+  }
+
+  createTodo(name : String, todo : ToDo){
+    return this.http.put(`http://localhost:8080/users/${name}/todos`,todo);
+  }
+
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToDo } from '../list-to-do/list-to-do.component';
 import { ToDoDataService } from '../services/DAO/to-do-data.service';
 
@@ -15,21 +15,41 @@ export class TodoComponent implements OnInit {
 
   constructor(
     private todoService : ToDoDataService,
-    private route : ActivatedRoute
+    private route : ActivatedRoute,
+    private router : Router
   ) {
-      this.todo = new ToDo(0,"default",false,new Date());
+      this.todo = new ToDo(0,"",false,new Date());
       this.id = 0;
    }
 
   ngOnInit(): void {
 
     this.id = this.route.snapshot.params['id'];
-    this.todoService.retriveTodo("krupa",this.id).subscribe(
-      data => this.todo = data
-    )
+    if(this.id != -1 ){
+      this.todoService.retriveTodo("krupa",this.id).subscribe(
+        data => this.todo = data
+      )
+    }
+   
 
   }
   updateTodo(){
- 
+    if(this.id === -1){
+      this.todoService.updateTodo("krupa",this.id,this.todo).subscribe(
+        data => {
+          console.log(data);
+          this.router.navigate(['todo']);
+        }
+      )
+    }
+   else{ 
+    this.todoService.updateTodo("krupa",this.id,this.todo).subscribe(
+      data => {
+        console.log(data);
+        this.router.navigate(['todo']);
+      }
+    )
   }
+  }
+
 }
