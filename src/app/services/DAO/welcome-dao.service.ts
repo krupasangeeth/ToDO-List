@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class HellowWorldData{
   constructor(public message : String){}
@@ -15,11 +15,26 @@ export class WelcomeDAOService {
   ) { }
 
   getWelcomedata(){
-    return this.http.get<HellowWorldData>("http://localhost:8080/helloworldbean");
+    let BasicAuthString = this.createBasicAuthenticationHeader();
+    let header = new HttpHeaders({
+      Authorization : BasicAuthString
+    })
+    return this.http.get<HellowWorldData>("http://localhost:8080/helloworldbean",{headers : header});
   }
 
   getWelcomedatawithParameters(name: string){
-    return this.http.get<HellowWorldData>(`http://localhost:8080/hello/${name}`);
+    let BasicAuthString = this.createBasicAuthenticationHeader();
+    let header = new HttpHeaders({
+      Authorization : BasicAuthString
+    })
+    return this.http.get<HellowWorldData>(`http://localhost:8080/hello/${name}`, {headers : header});
+  }
+
+  createBasicAuthenticationHeader(){
+    let username = "admin";
+    let password = "admin";
+    let BasicAuthString = "Basic "+window.btoa(username+":"+password);
+    return BasicAuthString;
   }
 
 }

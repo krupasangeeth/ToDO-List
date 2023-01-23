@@ -1,17 +1,25 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToDo } from 'src/app/list-to-do/list-to-do.component';
+import { WelcomeDAOService } from './welcome-dao.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ToDoDataService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient,
+              private todoService : WelcomeDAOService          
+    ) { }
 
 
   getTodoData(name: string){
-    return this.http.get<ToDo[]>(`http://localhost:8080/users/${name}/todos`);
+    let BasicAuthString = this.todoService.createBasicAuthenticationHeader();
+    let header = new HttpHeaders({
+      Authorization : BasicAuthString
+    })
+
+    return this.http.get<ToDo[]>(`http://localhost:8080/users/${name}/todos`,{headers : header});
   }
 
   deleteTodo(name : String, id: any ){
