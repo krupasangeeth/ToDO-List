@@ -14,12 +14,12 @@ export class ToDoDataService {
 
 
   getTodoData(name: string){
-    let BasicAuthString = this.todoService.createBasicAuthenticationHeader();
-    let header = new HttpHeaders({
-      Authorization : BasicAuthString
-    })
+    // let BasicAuthString = this.todoService.createBasicAuthenticationHeader();
+    // let header = new HttpHeaders({
+    //   Authorization : BasicAuthString
+    // })
 
-    return this.http.get<ToDo[]>(`http://localhost:8080/users/${name}/todos`,{headers : header});
+    return this.http.get<ToDo[]>(`http://localhost:8080/users/${name}/todos`);
   }
 
   deleteTodo(name : String, id: any ){
