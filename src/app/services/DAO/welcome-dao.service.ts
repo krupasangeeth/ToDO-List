@@ -15,11 +15,13 @@ export class WelcomeDAOService {
   ) { }
 
   getWelcomedata(){
-    let BasicAuthString = this.createBasicAuthenticationHeader();
-    let header = new HttpHeaders({
-      Authorization : BasicAuthString
-    })
-    return this.http.get<HellowWorldData>("http://localhost:8080/helloworldbean",{headers : header});
+    // let BasicAuthString = this.createBasicAuthenticationHeader();
+    // let header = new HttpHeaders({
+    //   Authorization : BasicAuthString
+    // })
+    return this.http.get<HellowWorldData>("http://localhost:8080/helloworldbean",
+    // {headers : header}
+    );
   }
 
   getWelcomedatawithParameters(name: string){
